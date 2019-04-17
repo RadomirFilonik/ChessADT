@@ -1,0 +1,65 @@
+﻿<h1>Choose a chess piece</h1>
+
+@section JavaScript
+{
+    <script type="text/javascript" src="~/Scripts/chessBoard.js"></script>
+}
+
+<script>
+
+    function createChessPiecesDiv() {
+
+        var mainBody = document.getElementsByTagName("body")[0];
+
+        mainBody.appendChild(document.createElement("div")).setAttribute("id", "piecesDiv");
+        var piecesDiv = document.getElementById("piecesDiv");
+
+        /*
+        var count = 6;
+            for (var i = 0; i < count; i++) {
+
+                var newImg = document.createElement("img");
+        var idName = "img" + (i + 1);
+        newImg.setAttribute("id", idName);
+        var src = "/Resources/" + (i + 1) + ".png";
+        newImg.setAttribute("src", src);
+        newImg.setAttribute("draggable", "true");
+        newImg.setAttribute("ondragstart", "drag(event)");
+
+        var newDiv = document.createElement("div");
+        newDiv.setAttribute("id", "img");
+        newDiv.setAttribute("style", "width: 100px; float:left; height: 100px; margin: 0px; background-color: Wheat");
+        newDiv.setAttribute("ondrop", "drop(event)");
+        newDiv.setAttribute("ondragover", "allowDrop(event)");
+        newDiv.appendChild(newImg);
+        piecesDiv.appendChild(newDiv);
+        }
+        */
+
+        var newAnch = document.createElement("a");
+        newAnch.setAttribute("href", "@Url.Action("Rook")");
+
+        var newImg = document.createElement("img");
+        var idName = "Rook";
+        newImg.setAttribute("id", idName);
+        var src = "/Resources/6.png";
+        newImg.setAttribute("src", src);
+        newImg.setAttribute("draggable", "true");
+        newImg.setAttribute("ondragstart", "drag(event)");
+
+        var newDiv = document.createElement("div");
+        newDiv.setAttribute("id", "img");
+        newDiv.setAttribute("class", "inactiveEvenField");
+        newDiv.setAttribute("ondrop", "drop(event)");
+        newDiv.setAttribute("ondragover", "allowDrop(event)");
+
+        newDiv.appendChild(newImg);
+        newAnch.appendChild(newDiv);
+        piecesDiv.appendChild(newAnch);
+
+    }
+
+    createDivChessBoard();
+    createChessPiecesDiv();
+
+</script>

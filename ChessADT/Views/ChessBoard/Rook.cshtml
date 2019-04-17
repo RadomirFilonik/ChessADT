@@ -1,0 +1,75 @@
+﻿@using ChessADT.Models;
+@model Rook
+
+@{
+    ViewBag.Title = "Rook";
+}
+
+<h2>Rook</h2>
+
+<script>
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+
+        var fieldsDivs = document.getElementsByClassName("field");
+
+        for (var i = 0; i < fieldsDivs.length; i++) {
+            fieldsDivs[i].classList.remove("activeField");
+        }
+
+        placePice(ev.target);
+    }
+
+    function placePice(field) {
+
+        console.log(field.id);
+        var stringArr = [];
+
+        $.ajax({
+            url: '@Url.Action("RookMove")',
+            type: 'POST',
+            data: { 'fieldId': field.id },
+            success: function (response) {
+
+                for (var i = 0; i < response.length; i++) {
+                    var a = document.getElementById(response[i]);
+                    a.classList.add("activeField");
+                }
+            }
+        });
+
+        console.log(stringArr);
+    }
+
+    function activeField(field) {
+        
+        for (var i = 0; i < arguments.length; i++) {
+            var a = document.getElementById(field);
+            a.classList.add("activeField");
+        }
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    createDivChessBoard();
+
+    var newImg = document.createElement("img");
+    var idName = "Rook";
+    newImg.setAttribute("id", idName);
+    var src = "/Resources/6.png";
+    newImg.setAttribute("src", src);
+    newImg.setAttribute("draggable", "true");
+    newImg.setAttribute("ondragstart", "drag(event)");
+    var startDiv = @Model.Position;
+    startDiv.appendChild(newImg);
+
+    placePice(@Model.Position);
+
+
+</script>
+

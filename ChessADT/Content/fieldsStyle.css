@@ -1,0 +1,29 @@
+﻿.inactiveEvenField.activeField {
+    width: 100px;
+    float: left;
+    height: 100px;
+    margin: 0;
+    background-color: blue;
+}
+.inactiveOddField.activeField {
+    width: 100px;
+    float: left;
+    height: 100px;
+    margin: 0;
+    background-color: blue;
+}
+
+.inactiveEvenField {
+    width: 100px;
+    float: left;
+    height: 100px;
+    margin: 0;
+    background-color: Wheat;
+}
+.inactiveOddField {
+    width: 100px;
+    float: left;
+    height: 100px;
+    margin: 0;
+    background-color: Sienna;
+}
