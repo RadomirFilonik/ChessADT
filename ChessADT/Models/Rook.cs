@@ -7,12 +7,10 @@ namespace ChessADT.Models
     {
         public Rook()
         {
-            Position = "A2";
-            Moves = ComputeMoves();
+            Position = "A1";
         }
 
         public string Position { get; set; }
-        public string[] Moves { get; set; }
         
         public string[] ComputeMoves()
         {

@@ -1,17 +1,17 @@
 ﻿@using ChessADT.Models;
-@model Rook
+@model King
 
-<h2>Rook</h2>
+<h2>King</h2>
 
 <script>
 
     function drop(ev) {
-        
+
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
-        
+
         $.ajax({
-            url: '@Url.Action("ValidRookMove")',
+            url: '@Url.Action("ValidKingMove")',
             type: 'POST',
             data: { 'fieldId': ev.target.id },
             success: function (response) {
@@ -35,7 +35,7 @@
 
     function placePice(field) {
         $.ajax({
-            url: '@Url.Action("RookMove")',
+            url: '@Url.Action("KingMove")',
             type: 'POST',
             data: { 'fieldId': field.id },
             success: function ( response ) {
@@ -55,14 +55,14 @@
     createDivChessBoard();
 
     var newImg = document.createElement("img");
-    newImg.setAttribute("id", "Rook");
-    newImg.setAttribute("src", "/Resources/6.png");
+    newImg.setAttribute("id", "King");
+    newImg.setAttribute("src", "/Resources/2.png");
     newImg.setAttribute("draggable", "true");
     newImg.setAttribute("ondragstart", "drag(event)");
     var startDiv = @Model.Position;
     startDiv.appendChild(newImg);
 
     placePice(@Model.Position);
-    
+
 </script>
 

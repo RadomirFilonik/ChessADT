@@ -6,11 +6,11 @@ function createDivChessBoard() {
     boardDiv.setAttribute("style", "width: 820px; height: 820px; float:left; padding: 10px; text-align: center; background-color: gray");
 
     var size = 8;
-    var helper = "ABCDEFGH";
+    var helper = "HGFEDCBA";
 
         for (var i = 0; i < size; i++) {
 
-            for (var j = size; j > 0; j--) {
+            for (var j = 1; j <= size; j++) {
 
                 var color = i + j;
                 var name = helper[i] + (j).toString();
@@ -18,16 +18,14 @@ function createDivChessBoard() {
                 newDiv.setAttribute("id", name);
                 
                 if (color % 2 == 0) {
-                    newDiv.setAttribute("class", "field inactiveEvenField");
-                    newDiv.setAttribute("ondrop", "drop(event)");
-                    newDiv.setAttribute("ondragover", "allowDrop(event)");
+                    newDiv.setAttribute("class", "field inactiveOddField");
+                    
                 }
                 else {
-                    newDiv.setAttribute("class", "field inactiveOddField");
-                    newDiv.setAttribute("ondrop", "drop(event)");
-                    newDiv.setAttribute("ondragover", "allowDrop(event)");
+                    newDiv.setAttribute("class", "field inactiveEvenField");
                 }
-
+                newDiv.setAttribute("ondrop", "drop(event)");
+                newDiv.setAttribute("ondragover", "allowDrop(event)");
                 newDiv.innerHTML = name;
                 boardDiv.appendChild(newDiv);
             }

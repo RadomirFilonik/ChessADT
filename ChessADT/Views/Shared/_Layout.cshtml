@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="~/Scripts/chessBoard.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Content/fieldsStyle.css">
+    @Scripts.Render("~/bundles/jquery")
+    
     @RenderSection("JavaScript", required: false)
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
@@ -12,8 +14,6 @@
 </head>
 <body>
     @RenderBody()
-
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

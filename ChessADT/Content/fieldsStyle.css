@@ -3,14 +3,14 @@
     float: left;
     height: 100px;
     margin: 0;
-    background-color: blue;
+    background-color: dodgerblue;
 }
 .inactiveOddField.activeField {
     width: 100px;
     float: left;
     height: 100px;
     margin: 0;
-    background-color: blue;
+    background-color: dodgerblue;
 }
 
 .inactiveEvenField {
