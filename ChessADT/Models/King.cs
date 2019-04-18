@@ -10,9 +10,10 @@ namespace ChessADT.Models
     {
         public King()
         {
+            Name = "King";
             Position = "A2";
         }
-
+        public string Name { get; set; }
         public string Position { get; set; }
 
         public string[] ComputeMoves()

@@ -14,67 +14,37 @@
         mainBody.appendChild(document.createElement("div")).setAttribute("id", "piecesDiv");
         var piecesDiv = document.getElementById("piecesDiv");
 
-        /*
-        var count = 6;
-            for (var i = 0; i < count; i++) {
-
-                var newImg = document.createElement("img");
-        var idName = "img" + (i + 1);
-        newImg.setAttribute("id", idName);
-        var src = "/Resources/" + (i + 1) + ".png";
-        newImg.setAttribute("src", src);
-        newImg.setAttribute("draggable", "true");
-        newImg.setAttribute("ondragstart", "drag(event)");
-
-        var newDiv = document.createElement("div");
-        newDiv.setAttribute("id", "img");
-        newDiv.setAttribute("style", "width: 100px; float:left; height: 100px; margin: 0px; background-color: Wheat");
-        newDiv.setAttribute("ondrop", "drop(event)");
-        newDiv.setAttribute("ondragover", "allowDrop(event)");
-        newDiv.appendChild(newImg);
-        piecesDiv.appendChild(newDiv);
-        }
-        */
-
-        var newAnch = document.createElement("a");
-        newAnch.setAttribute("href", "@Url.Action("Rook")");
-
-        var newImg = document.createElement("img");
-        newImg.setAttribute("id", "Rook");
-        newImg.setAttribute("src", "/Resources/6.png");
-        newImg.setAttribute("draggable", "true");
-        newImg.setAttribute("ondragstart", "drag(event)");
-
-        var newDiv = document.createElement("div");
-        newDiv.setAttribute("id", "img");
-        newDiv.setAttribute("class", "inactiveEvenField");
-        newDiv.setAttribute("ondrop", "drop(event)");
-        newDiv.setAttribute("ondragover", "allowDrop(event)");
-
-        newDiv.appendChild(newImg);
-        newAnch.appendChild(newDiv);
-        piecesDiv.appendChild(newAnch);
-
-        var newAnch = document.createElement("a");
-        newAnch.setAttribute("href", "@Url.Action("King")");
-
-        var newImg = document.createElement("img");
-        newImg.setAttribute("id", "King");
-        newImg.setAttribute("src", "/Resources/2.png");
-        newImg.setAttribute("draggable", "true");
-        newImg.setAttribute("ondragstart", "drag(event)");
-
-        var newDiv = document.createElement("div");
-        newDiv.setAttribute("id", "img");
-        newDiv.setAttribute("class", "inactiveEvenField");
-        newDiv.setAttribute("ondrop", "drop(event)");
-        newDiv.setAttribute("ondragover", "allowDrop(event)");
-
-        newDiv.appendChild(newImg);
-        newAnch.appendChild(newDiv);
-        piecesDiv.appendChild(newAnch);
-
+        createPieceLink("Rook", 6, piecesDiv);
+        createPieceLink("King", 2, piecesDiv);
     }
+
+    function createPieceLink(pieceName, resourceNr, parentDiv) {
+
+        var name = pieceName;
+        var ref = "/ChessBoard/" + name;
+
+        var newAnch = document.createElement("a");
+        newAnch.setAttribute("href", ref);
+
+        var newImg = document.createElement("img");
+        newImg.setAttribute("id", name);
+
+        var resNr = "/Resources/" + resourceNr + ".png";
+        newImg.setAttribute("src", resNr);
+        newImg.setAttribute("class", "pieceImg");
+        newImg.setAttribute("draggable", "true");
+        newImg.setAttribute("ondragstart", "drag(event)");
+
+        var newDiv = document.createElement("div");
+        newDiv.setAttribute("class", "pieceLinkField");
+        newDiv.setAttribute("ondrop", "drop(event)");
+        newDiv.setAttribute("ondragover", "allowDrop(event)");
+
+        newDiv.appendChild(newImg);
+        newAnch.appendChild(newDiv);
+        parentDiv.appendChild(newAnch);
+    }
+
     createDivChessBoard();
     createChessPiecesDiv();
 

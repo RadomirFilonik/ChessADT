@@ -7,9 +7,10 @@ namespace ChessADT.Models
     {
         public Rook()
         {
+            Name = "Rook";
             Position = "A1";
         }
-
+        public string Name { get; set; }
         public string Position { get; set; }
         
         public string[] ComputeMoves()

@@ -19,6 +19,7 @@
     height: 100px;
     margin: 0;
     background-color: Wheat;
+    position: relative;
 }
 .inactiveOddField {
     width: 100px;
@@ -26,4 +27,29 @@
     height: 100px;
     margin: 0;
     background-color: Sienna;
+    position: relative;
 }
+.pieceLinkField {
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin: 0;
+    background-color: Wheat;
+    position: relative;
+}
+#boardDiv {
+    width: 820px;
+    height: 820px;
+    padding: 10px;
+    text-align: center;
+    background-color: gray;
+}
+.pieceImg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+
+}
+

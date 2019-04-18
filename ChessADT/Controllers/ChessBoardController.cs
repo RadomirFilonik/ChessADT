@@ -1,12 +1,13 @@
-﻿using ChessADT.Models;
+﻿using ChessADT.Interfaces;
+using ChessADT.Models;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace ChessADT.Controllers
 {
     public class ChessBoardController : Controller
     {
-        private static Rook rook = new Rook();
-        private static King king = new King();
+        private static List<IPiece> piecesRepo = new List<IPiece>() { new Rook(), new King()};
 
         public ActionResult Index()
         {
@@ -15,45 +16,29 @@ namespace ChessADT.Controllers
 
         public ActionResult Rook()
         {
+            var rook = piecesRepo.Find(x => x.Name == "Rook");
             return View(rook);
         }
 
         public ActionResult King()
         {
+            var king = piecesRepo.Find(x => x.Name == "King");
             return View(king);
         }
 
         [HttpPost]
-        public JsonResult RookMove( string fieldId )
+        public JsonResult Move(string fieldId, string pieceName)
         {
-            rook.Position = fieldId;
-            return Json(rook.ComputeMoves());
+            var piece = piecesRepo.Find(x => x.Name == pieceName);
+            piece.Position = fieldId;
+            return Json(piece.ComputeMoves());
         }
 
         [HttpPost]
-        public JsonResult ValidRookMove(string fieldId)
+        public JsonResult ValidMove(string fieldId, string pieceName)
         {
-            foreach (var move in rook.ComputeMoves())
-            {
-                if (move == fieldId)
-                {
-                    return Json(new { allowMove = true });
-                }
-            }
-            return Json(new { allowMove = false });
-        }
-
-        [HttpPost]
-        public JsonResult KingMove(string fieldId)
-        {
-            king.Position = fieldId;
-            return Json(king.ComputeMoves());
-        }
-
-        [HttpPost]
-        public JsonResult ValidKingMove(string fieldId)
-        {
-            foreach (var move in king.ComputeMoves())
+            var piece = piecesRepo.Find(x => x.Name == pieceName);
+            foreach (var move in piece.ComputeMoves())
             {
                 if (move == fieldId)
                 {

@@ -1,68 +1,33 @@
 ﻿@using ChessADT.Models;
 @model King
 
-<h2>King</h2>
+<h2>Drag and Drop King</h2>
+
+@Html.ActionLink("Return to Index", "Index", "ChessBoard", null, new { @class = "btn btn-primary", @style = "margin : 5px" })
 
 <script>
 
     function drop(ev) {
-
         ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-
-        $.ajax({
-            url: '@Url.Action("ValidKingMove")',
-            type: 'POST',
-            data: { 'fieldId': ev.target.id },
-            success: function (response) {
-                if (response.allowMove == true) {
-
-                    ev.target.appendChild(document.getElementById(data));
-                    var fieldsDivs = document.getElementsByClassName("field");
-
-                    for (var i = 0; i < fieldsDivs.length; i++) {
-                        fieldsDivs[i].classList.remove("activeField");
-                    }
-
-                    placePice(ev.target);
-                }
-                else {
-                    alert("Wrong move!");
-                }
-            }
-        });
-    }
-
-    function placePice(field) {
-        $.ajax({
-            url: '@Url.Action("KingMove")',
-            type: 'POST',
-            data: { 'fieldId': field.id },
-            success: function ( response ) {
-
-                for (var i = 0; i < response.length; i++) {
-                    var a = document.getElementById(response[i]);
-                    a.classList.add("activeField");
-                }
-            }
-        });
+        myDrop(ev, "@Model.Name");
     }
 
     function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
     }
-
+    
     createDivChessBoard();
 
     var newImg = document.createElement("img");
     newImg.setAttribute("id", "King");
+    newImg.setAttribute("class", "pieceImg");
     newImg.setAttribute("src", "/Resources/2.png");
     newImg.setAttribute("draggable", "true");
     newImg.setAttribute("ondragstart", "drag(event)");
     var startDiv = @Model.Position;
     startDiv.appendChild(newImg);
 
-    placePice(@Model.Position);
+    placePice(@Model.Position, "@Model.Name");
 
 </script>
 
